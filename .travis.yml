@@ -1,0 +1,19 @@
+language: go
+sudo: true
+go:
+ - 1.5
+ - 1.6
+ - tip
+
+before_install:
+  - sudo apt-get install -y make
+  - go get golang.org/x/tools/cmd/cover
+  - go get github.com/mattn/goveralls
+  - go get github.com/Masterminds/glide
+
+script:
+  - glide install
+  - make test-and-cover
+
+after_success:
+  - goveralls -coverprofile=coverage.out -service=travis-ci -repotoken=$COVERALLS
