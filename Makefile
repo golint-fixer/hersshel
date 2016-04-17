@@ -21,6 +21,7 @@ deps: $(GOPATH)/bin/glide \
 	glide install
 
 build:
+	go generate $(PACKAGES)
 	go build -tags netgo --ldflags '-extldflags "-static" -w' ./cmd/...
 
 lint:

@@ -1,3 +1,6 @@
 package: github.com/hersshel/hersshel
 import:
+- package: github.com/Sirupsen/logrus
 - package: github.com/kelseyhightower/envconfig
+- package: github.com/lib/pq
+- package: gopkg.in/gorp.v1

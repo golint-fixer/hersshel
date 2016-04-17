@@ -5,9 +5,11 @@
 
 A self-hosted RSS feed aggregator written in Go.
 
-It is aimed to be lightweight, easy to work with, powerful and customizable.
+It is lightweight, easy to work with, powerful and customizable.
 
-Its design is tighly coupled to container and microservices architecture.
+Its design is tightly coupled to container and micro-services architecture.
+
+The current RDBMS supported is PostgreSQL, you're welcome to PR to support more driver.
 
 __This project is under heavy development__
 
