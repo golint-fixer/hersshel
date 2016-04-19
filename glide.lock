@@ -1,6 +1,10 @@
 hash: 07713531871266c27215a2a43b453d75a261b1b21cf194ec92367fe5bd50d7ae
 updated: 2016-04-18T18:59:35.576199862-07:00
 imports:
+- name: github.com/gin-gonic/contrib
+  version: 154ef3798e7261b0348e0a49a5a1478afe5e673c
+  subpackages:
+  - ginrus
 - name: github.com/gin-gonic/gin
   version: 542be2fe77724f800fcab7eb6c01a4e597fb8506
   subpackages:
