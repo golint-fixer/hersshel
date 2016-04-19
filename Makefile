@@ -1,4 +1,4 @@
-PACKAGES=$(shell go list ./... | grep -v /vendor/)
+PACKAGES=$(shell go list -e ./... | grep -v /vendor/)
 
 all: deps test lint
 
