@@ -6,16 +6,16 @@ import (
 	"gopkg.in/gorp.v1"
 )
 
-// Feed describe an RSS/Atom feed.
+// Feed describe an RSS/Atom feed in the database.
 type Feed struct {
-	ID          uint      `db:"id"`
-	CreatedAt   time.Time `db:"created_at"`
-	UpdatedAt   time.Time `db:"updated_at"`
-	URL         string    `db:"url"`
-	Name        string    `db:"name"`
-	Website     string    `db:"website"`
-	Description string    `db:"description"`
-	Image       string    `db:"image"`
+	ID          uint      `db:"id" json:"id"`
+	CreatedAt   time.Time `db:"created_at" json:"created_at"`
+	UpdatedAt   time.Time `db:"updated_at" json:"updated_at"`
+	URL         string    `db:"url" json:"url"`
+	Name        string    `db:"name" json:"name"`
+	Website     *string   `db:"website" json:"website,omitempty"`
+	Description *string   `db:"description" json:"description,omitempty"`
+	Image       *string   `db:"image" json:"image,omitempty"`
 }
 
 // PreInsert is a hook called before inserting into the DB.

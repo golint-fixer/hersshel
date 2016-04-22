@@ -4,6 +4,7 @@ import (
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+	"github.com/hersshel/hersshel/api"
 	"github.com/hersshel/hersshel/router/middleware/header"
 )
 
@@ -20,7 +21,7 @@ func Load(middleware ...gin.HandlerFunc) http.Handler {
 
 	v1 := e.Group("/v1")
 	{
-		v1.POST("/feeds")
+		v1.POST("/feeds", api.PostFeed)
 		v1.POST("/categories")
 
 		v1.GET("/items")
