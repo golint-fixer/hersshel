@@ -1,6 +1,6 @@
 PACKAGES=$(shell go list -e ./... | grep -v /vendor/)
 
-all: deps test lint
+all: deps test-and-cover lint
 
 $(GOPATH)/bin/glide:
 	go get github.com/Masterminds/glide
