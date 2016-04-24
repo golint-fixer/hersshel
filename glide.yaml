@@ -8,3 +8,4 @@ import:
 - package: github.com/lib/pq
 - package: gopkg.in/gorp.v1
 - package: github.com/gin-gonic/gin
+- package: github.com/mmcdole/gofeed

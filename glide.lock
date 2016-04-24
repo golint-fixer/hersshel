@@ -1,6 +1,8 @@
-hash: 9c92c8412c79d4fc0ae26cbd30fa7cb15b4dfb11b035572b434ad9d2d9bf8f29
-updated: 2016-04-19T15:07:43.595733976-07:00
+hash: 26e109dc623c74c5a4f87c2dd62595de45dd861000acf90507561cd3f8a590cd
+updated: 2016-04-23T21:23:52.062774046-07:00
 imports:
+- name: github.com/andybalholm/cascadia
+  version: 3ad29d1ad1c4f2023e355603324348cf1f4b2d48
 - name: github.com/gin-gonic/contrib
   version: 154ef3798e7261b0348e0a49a5a1478afe5e673c
   subpackages:
@@ -22,6 +24,17 @@ imports:
   - oid
 - name: github.com/manucorporat/sse
   version: ee05b128a739a0fb76c7ebd3ae4810c1de808d6d
+- name: github.com/mmcdole/gofeed
+  version: fe3a08cb14ba189a8d039b0a9549a48945929e75
+  subpackages:
+  - atom
+  - extensions
+  - internal/shared
+  - rss
+- name: github.com/mmcdole/goxpp
+  version: e38884aa48c1952a416ba35f3c276e4f02f9b40e
+- name: github.com/PuerkitoBio/goquery
+  version: 2e29ea41f0d13f4a303c75553f4eeadddc7a4c56
 - name: github.com/rubenv/sql-migrate
   version: 969836b11ea791ff8335d8142eb96904db12d593
   subpackages:
@@ -32,6 +45,27 @@ imports:
   version: f315505cf3349909cdf013ea56690da34e96a451
   subpackages:
   - context
+  - html/charset
+  - html
+  - html/atom
+- name: golang.org/x/text
+  version: 3100578f0f8093e37883ba48c9187fe51367ad05
+  subpackages:
+  - transform
+  - encoding
+  - encoding/charmap
+  - encoding/htmlindex
+  - encoding/internal/identifier
+  - encoding/internal
+  - encoding/japanese
+  - encoding/korean
+  - encoding/simplifiedchinese
+  - encoding/traditionalchinese
+  - encoding/unicode
+  - language
+  - internal/utf8internal
+  - runes
+  - internal/tag
 - name: gopkg.in/go-playground/validator.v8
   version: c193cecd124b5cc722d7ee5538e945bdb3348435
 - name: gopkg.in/gorp.v1
