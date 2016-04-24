@@ -1,4 +1,4 @@
-PACKAGES=$(shell go list -e ./... | grep -v /vendor/)
+PACKAGES=$(shell glide novendor)
 
 all: deps test-and-cover lint
 
