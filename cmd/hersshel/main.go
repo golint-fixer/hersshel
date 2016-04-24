@@ -26,6 +26,7 @@ func main() {
 	handler := router.Load(
 		ginrus.Ginrus(logrus.StandardLogger(), time.RFC3339, true),
 		middleware.Store(cfg.PostgreSQL),
+		middleware.Engine(),
 	)
 
 	logrus.Fatal(http.ListenAndServe(fmt.Sprintf(":%d", cfg.Server.HTTPPort), handler))

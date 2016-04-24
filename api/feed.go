@@ -6,6 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/lib/pq"
 
+	"github.com/hersshel/hersshel/engine"
 	"github.com/hersshel/hersshel/errors"
 	"github.com/hersshel/hersshel/model"
 	"github.com/hersshel/hersshel/store"
@@ -23,6 +24,8 @@ type newFeed struct {
 // The user sends a JSON described by model.Feed.
 func PostFeed(c *gin.Context) {
 	var in = &newFeed{}
+	var e = engine.FromContext(c)
+
 	err := BindJSON(c, in)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, errors.Error{
@@ -56,5 +59,6 @@ func PostFeed(c *gin.Context) {
 		})
 		return
 	}
+	go e.Schedule(c, feed)
 	c.JSON(http.StatusOK, feed)
 }
