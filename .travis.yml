@@ -10,10 +10,11 @@ before_install:
   - go get golang.org/x/tools/cmd/cover
   - go get github.com/mattn/goveralls
   - go get github.com/Masterminds/glide
+  - go get github.com/golang/lint/golint
 
 script:
   - glide install
-  - make test-and-cover
+  - make test-and-cover lint
 
 after_success:
   - goveralls -coverprofile=coverage.out -service=travis-ci -repotoken=$COVERALLS
