@@ -31,8 +31,8 @@ CREATE INDEX idx_feed_name ON hersshel.feed (name);
 
 CREATE TABLE IF NOT EXISTS hersshel.item (
     id BIGSERIAL,
-    created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now(),
-    updated_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now(),
+    created_at TIMESTAMP WITH TIME ZONE DEFAULT NULL,
+    updated_at TIMESTAMP WITH TIME ZONE DEFAULT NULL,
     title TEXT NOT NULL,
     author TEXT,
     content BYTEA,
