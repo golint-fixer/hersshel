@@ -1,5 +1,5 @@
-hash: 26e109dc623c74c5a4f87c2dd62595de45dd861000acf90507561cd3f8a590cd
-updated: 2016-04-23T21:23:52.062774046-07:00
+hash: 8a1f092dc9af4b110934efc13d7b0e219d334167138024e271ef04466465f68c
+updated: 2016-04-23T21:52:17.133577605-07:00
 imports:
 - name: github.com/andybalholm/cascadia
   version: 3ad29d1ad1c4f2023e355603324348cf1f4b2d48
@@ -8,7 +8,7 @@ imports:
   subpackages:
   - ginrus
 - name: github.com/gin-gonic/gin
-  version: 5caaac4c5c712a9e7a7de29e6c24ef46c753017f
+  version: 542be2fe77724f800fcab7eb6c01a4e597fb8506
   subpackages:
   - binding
   - render

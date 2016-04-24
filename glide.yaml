@@ -1,4 +1,9 @@
 package: github.com/hersshel/hersshel
+homepage: https://github.com/hersshel/hersshel
+license: MIT
+owners:
+- name: Guillaume Fillon
+  homepage: http://www.guillaume-fillon.com
 import:
 - package: github.com/Sirupsen/logrus
 - package: github.com/gin-gonic/contrib
