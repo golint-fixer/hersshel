@@ -12,7 +12,7 @@ import (
 // Engine is an interface that handles lifecycle
 // of goroutines used to fetch RSS feed.
 type Engine interface {
-	Schedule(context.Context, *model.Feed) error
+	Schedule(context.Context, *model.Feed)
 }
 
 type engine struct {
@@ -27,12 +27,13 @@ func New() Engine {
 	}
 }
 
-func (e *engine) Schedule(ctx context.Context, feed *model.Feed) error {
+func (e *engine) Schedule(ctx context.Context, feed *model.Feed) {
 	f, err := e.parser.ParseURL(feed.URL)
 	if err != nil {
-		return err
+		logrus.WithError(err).Errorf("error parsing the feed")
+		return
 	}
-	logrus.Infof("feed fetched: %#v", f)
+	logrus.WithField("feed", f).Infof("feed fetched")
 	if len(f.Items) > 0 {
 		items := make([]*model.Item, len(f.Items))
 		for k, v := range f.Items {
@@ -47,9 +48,11 @@ func (e *engine) Schedule(ctx context.Context, feed *model.Feed) error {
 			if v.Author != nil {
 				items[k].Author = v.Author.Name
 			}
-			logrus.Infof("item[%d] = %v", k, items[k])
 		}
-		store.CreateItems(ctx, items)
+		err = store.CreateItems(ctx, items)
+		if err != nil {
+			logrus.WithError(err).Errorf("error storing the feed")
+			return
+		}
 	}
-	return nil
 }
