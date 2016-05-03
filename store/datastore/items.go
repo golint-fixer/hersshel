@@ -32,3 +32,14 @@ func (ds *datastore) GetFeedItems(id uint) ([]*model.Item, error) {
 		map[string]interface{}{"id": id})
 	return items, err
 }
+
+// GetCategoryItems return a list of model.Item belonging to a given category.
+func (ds *datastore) GetCategoryItems(id uint) ([]*model.Item, error) {
+	var items []*model.Item
+	_, err := ds.Select(&items, `SELECT item.*
+	FROM item
+		INNER JOIN feed ON feed_id = feed.id
+	WHERE category_id = :id`,
+		map[string]interface{}{"id": id})
+	return items, err
+}

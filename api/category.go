@@ -2,6 +2,7 @@ package api
 
 import (
 	"net/http"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 	"github.com/hersshel/hersshel/errors"
@@ -48,4 +49,29 @@ func PostCategory(c *gin.Context) {
 		return
 	}
 	c.JSON(http.StatusCreated, category)
+}
+
+// GetCategoryItems returns a list of all the items from a specific category.
+func GetCategoryItems(c *gin.Context) {
+	id, err := strconv.Atoi(c.Param("id"))
+	if err != nil {
+		c.JSON(http.StatusNotFound, errors.Error{
+			Status:  http.StatusNotFound,
+			Code:    "not_found",
+			Message: "feed not found",
+		})
+		return
+	}
+	items, err := store.GetCategoryItems(c, uint(id))
+	if err != nil {
+		if driverErr, ok := err.(*pq.Error); ok {
+			c.JSON(http.StatusNotFound, errors.Error{
+				Status:  http.StatusNotFound,
+				Code:    "not_found",
+				Message: driverErr.Detail,
+			})
+			return
+		}
+	}
+	c.JSON(http.StatusOK, items)
 }
