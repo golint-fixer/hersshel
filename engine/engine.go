@@ -40,13 +40,13 @@ func (e *engine) Schedule(ctx context.Context, feed *model.Feed) {
 			items[k] = &model.Item{
 				Link:      v.Link,
 				Title:     v.Title,
-				Content:   v.Content,
+				Content:   &v.Content,
 				CreatedAt: v.PublishedParsed,
 				UpdatedAt: v.UpdatedParsed,
 				FeedID:    feed.ID,
 			}
 			if v.Author != nil {
-				items[k].Author = v.Author.Name
+				items[k].Author = &v.Author.Name
 			}
 		}
 		err = store.CreateItems(ctx, items)

@@ -62,3 +62,9 @@ func PostFeed(c *gin.Context) {
 	go e.Schedule(c, feed)
 	c.JSON(http.StatusOK, feed)
 }
+
+// GetAllItems returns a list of all the items in the store.
+func GetAllItems(c *gin.Context) {
+	items, _ := store.GetAllItems(c)
+	c.JSON(http.StatusOK, items)
+}

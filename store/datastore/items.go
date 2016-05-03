@@ -17,3 +17,10 @@ func (ds *datastore) CreateItems(items []*model.Item) error {
 	}
 	return nil
 }
+
+// GetAllItems returns all the model.Item from the store.
+func (ds *datastore) GetAllItems() ([]*model.Item, error) {
+	var items []*model.Item
+	_, err := ds.Select(&items, "SELECT * FROM item")
+	return items, err
+}
