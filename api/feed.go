@@ -60,7 +60,7 @@ func PostFeed(c *gin.Context) {
 		return
 	}
 	go e.Schedule(c, feed)
-	c.JSON(http.StatusOK, feed)
+	c.JSON(http.StatusCreated, feed)
 }
 
 // GetAllItems returns a list of all the items in the store.
