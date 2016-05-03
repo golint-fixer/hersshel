@@ -22,7 +22,7 @@ func Load(middleware ...gin.HandlerFunc) http.Handler {
 	v1 := e.Group("/v1")
 	{
 		v1.POST("/feeds", api.PostFeed)
-		v1.POST("/categories")
+		v1.POST("/categories", api.PostCategory)
 
 		v1.GET("/items", api.GetAllItems)
 		v1.GET("/feeds")

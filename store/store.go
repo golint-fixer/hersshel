@@ -13,6 +13,8 @@ type Store interface {
 	CreateItems(items []*model.Item) error
 	// GetAllItems returns all the model.Item from the store.
 	GetAllItems() ([]*model.Item, error)
+	// CreateCategory creates a new category.
+	CreateCategory(*model.Category) error
 }
 
 // CreateFeed creates a new feed.
@@ -28,4 +30,9 @@ func CreateItems(c context.Context, items []*model.Item) error {
 // GetAllItems returns all the model.Item from the store.
 func GetAllItems(c context.Context) ([]*model.Item, error) {
 	return FromContext(c).GetAllItems()
+}
+
+// CreateCategory creates a new category.
+func CreateCategory(c context.Context, category *model.Category) error {
+	return FromContext(c).CreateCategory(category)
 }
