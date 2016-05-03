@@ -63,6 +63,12 @@ func PostFeed(c *gin.Context) {
 	c.JSON(http.StatusCreated, feed)
 }
 
+// GetAllFeeds returns a JSON Array of the feeds in the store.
+func GetAllFeeds(c *gin.Context) {
+	feeds, _ := store.GetAllFeeds(c)
+	c.JSON(http.StatusOK, feeds)
+}
+
 // GetAllItems returns a list of all the items in the store.
 func GetAllItems(c *gin.Context) {
 	items, _ := store.GetAllItems(c)

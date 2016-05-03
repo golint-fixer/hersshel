@@ -9,6 +9,8 @@ import (
 type Store interface {
 	// CreateFeed creates a new feed.
 	CreateFeed(*model.Feed) error
+	// GetAllFeeds returns all feeds from the store.
+	GetAllFeeds() ([]*model.Feed, error)
 	// CreateItems inserts multiple model.Item into the store.
 	CreateItems(items []*model.Item) error
 	// GetAllItems returns all the model.Item from the store.
@@ -20,6 +22,11 @@ type Store interface {
 // CreateFeed creates a new feed.
 func CreateFeed(c context.Context, feed *model.Feed) error {
 	return FromContext(c).CreateFeed(feed)
+}
+
+// GetAllFeeds returns all feeds from the store.
+func GetAllFeeds(c context.Context) ([]*model.Feed, error) {
+	return FromContext(c).GetAllFeeds()
 }
 
 // CreateItems inserts multiple model.Item into the store.
