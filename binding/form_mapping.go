@@ -91,7 +91,7 @@ func setWithProperType(valueKind reflect.Kind, val string, structField reflect.V
 	case reflect.String:
 		structField.SetString(val)
 	default:
-		return errors.New("Unknown type")
+		return errors.New("unknown type")
 	}
 	return nil
 }

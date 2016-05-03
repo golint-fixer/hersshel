@@ -6,6 +6,7 @@ package binding
 
 import "net/http"
 
+// Those constants define common MIME types.
 const (
 	MIMEJSON              = "application/json"
 	MIMEHTML              = "text/html"
@@ -17,11 +18,15 @@ const (
 	MIMEPROTOBUF          = "application/x-protobuf"
 )
 
+// Binding is an interface helping binding data from a http.Request
+// with a given interface.
 type Binding interface {
 	Name() string
 	Bind(*http.Request, interface{}) error
 }
 
+// StructValidator is an interface that implement
+// data validation against a struct.
 type StructValidator interface {
 	// ValidateStruct can receive any kind of type and it should never panic, even if the configuration is not right.
 	// If the received type is not a struct, any validation should be skipped and nil must be returned.
@@ -31,8 +36,10 @@ type StructValidator interface {
 	ValidateStruct(interface{}) error
 }
 
+// Validator is the default validator.
 var Validator StructValidator = &defaultValidator{}
 
+// Those constants are structs implementing Binding interface.
 var (
 	JSON          = jsonBinding{}
 	XML           = xmlBinding{}
@@ -41,18 +48,19 @@ var (
 	FormMultipart = formMultipartBinding{}
 )
 
+// Default returns a Binding interface that can decode the given
+// contentType.
 func Default(method, contentType string) Binding {
 	if method == "GET" {
 		return Form
-	} else {
-		switch contentType {
-		case MIMEJSON:
-			return JSON
-		case MIMEXML, MIMEXML2:
-			return XML
-		default: //case MIMEPOSTForm, MIMEMultipartPOSTForm:
-			return Form
-		}
+	}
+	switch contentType {
+	case MIMEJSON:
+		return JSON
+	case MIMEXML, MIMEXML2:
+		return XML
+	default: //case MIMEPOSTForm, MIMEMultipartPOSTForm:
+		return Form
 	}
 }
 
