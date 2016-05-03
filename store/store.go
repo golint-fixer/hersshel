@@ -11,6 +11,8 @@ type Store interface {
 	CreateFeed(*model.Feed) error
 	// GetAllFeeds returns all feeds from the store.
 	GetAllFeeds() ([]*model.Feed, error)
+	// GetFeedItems return a list of model.Item belonging to a given feed.
+	GetFeedItems(id uint) ([]*model.Item, error)
 	// CreateItems inserts multiple model.Item into the store.
 	CreateItems(items []*model.Item) error
 	// GetAllItems returns all the model.Item from the store.
@@ -27,6 +29,11 @@ func CreateFeed(c context.Context, feed *model.Feed) error {
 // GetAllFeeds returns all feeds from the store.
 func GetAllFeeds(c context.Context) ([]*model.Feed, error) {
 	return FromContext(c).GetAllFeeds()
+}
+
+// GetFeedItems return a list of model.Item belonging to a given feed.
+func GetFeedItems(c context.Context, id uint) ([]*model.Item, error) {
+	return FromContext(c).GetFeedItems(id)
 }
 
 // CreateItems inserts multiple model.Item into the store.

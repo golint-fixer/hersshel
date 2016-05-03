@@ -24,3 +24,11 @@ func (ds *datastore) GetAllItems() ([]*model.Item, error) {
 	_, err := ds.Select(&items, "SELECT * FROM item")
 	return items, err
 }
+
+// GetFeedItems return a list of model.Item belonging to a given feed.
+func (ds *datastore) GetFeedItems(id uint) ([]*model.Item, error) {
+	var items []*model.Item
+	_, err := ds.Select(&items, "SELECT * FROM item WHERE feed_id = :id",
+		map[string]interface{}{"id": id})
+	return items, err
+}

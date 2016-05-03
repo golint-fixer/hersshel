@@ -26,7 +26,7 @@ func Load(middleware ...gin.HandlerFunc) http.Handler {
 
 		v1.GET("/items", api.GetAllItems)
 		v1.GET("/feeds", api.GetAllFeeds)
-		v1.GET("/feeds/:feed_id/items")
+		v1.GET("/feeds/:id/items", api.GetFeedItems)
 		v1.GET("/categories/:category_id/items")
 
 		v1.PATCH("/feeds")

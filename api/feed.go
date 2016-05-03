@@ -2,6 +2,7 @@ package api
 
 import (
 	"net/http"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 	"github.com/lib/pq"
@@ -72,5 +73,30 @@ func GetAllFeeds(c *gin.Context) {
 // GetAllItems returns a list of all the items in the store.
 func GetAllItems(c *gin.Context) {
 	items, _ := store.GetAllItems(c)
+	c.JSON(http.StatusOK, items)
+}
+
+// GetFeedItems returns a list of all the items from a specific feed.
+func GetFeedItems(c *gin.Context) {
+	id, err := strconv.Atoi(c.Param("id"))
+	if err != nil {
+		c.JSON(http.StatusNotFound, errors.Error{
+			Status:  http.StatusNotFound,
+			Code:    "not_found",
+			Message: "feed not found",
+		})
+		return
+	}
+	items, err := store.GetFeedItems(c, uint(id))
+	if err != nil {
+		if driverErr, ok := err.(*pq.Error); ok {
+			c.JSON(http.StatusNotFound, errors.Error{
+				Status:  http.StatusNotFound,
+				Code:    "not_found",
+				Message: driverErr.Detail,
+			})
+			return
+		}
+	}
 	c.JSON(http.StatusOK, items)
 }
