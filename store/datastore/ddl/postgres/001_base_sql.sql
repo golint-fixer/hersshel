@@ -43,7 +43,8 @@ CREATE TABLE IF NOT EXISTS hersshel.item (
     CONSTRAINT pk_item PRIMARY KEY (id),
     CONSTRAINT fk_item_feed 
         FOREIGN KEY (feed_id) REFERENCES hersshel.feed (id)
-        ON DELETE CASCADE ON UPDATE CASCADE
+        ON DELETE CASCADE ON UPDATE CASCADE,
+    CONSTRAINT uq_item_link UNIQUE (feed_id, link)
 );
 
 CREATE INDEX idx_item_read ON hersshel.item (read);

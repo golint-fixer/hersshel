@@ -16,7 +16,7 @@ type Feed struct {
 	Website     *string   `db:"website" json:"website,omitempty"`
 	Description *string   `db:"description" json:"description,omitempty"`
 	Image       *string   `db:"image" json:"image,omitempty"`
-	CategoryID  uint      `db:"category_id" json:"category_id,omitempty"`
+	CategoryID  *uint      `db:"category_id" json:"category_id,omitempty"`
 }
 
 // PreInsert is a hook called before inserting into the DB.

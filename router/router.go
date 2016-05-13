@@ -23,6 +23,7 @@ func Load(middleware ...gin.HandlerFunc) http.Handler {
 	{
 		v1.POST("/feeds", api.PostFeed)
 		v1.POST("/categories", api.PostCategory)
+		v1.POST("/items", api.UpdateFeeds)
 
 		v1.GET("/items", api.GetAllItems)
 		v1.GET("/feeds", api.GetAllFeeds)

@@ -100,3 +100,13 @@ func GetFeedItems(c *gin.Context) {
 	}
 	c.JSON(http.StatusOK, items)
 }
+
+// UpdateFeeds will update every feeds.
+func UpdateFeeds(c *gin.Context) {
+	var ngine = engine.FromContext(c)
+
+	feeds, _ := store.GetAllFeeds(c)
+	for _, feed := range feeds {
+		ngine.Schedule(c, feed)
+	}
+}
