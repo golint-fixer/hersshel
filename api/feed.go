@@ -7,6 +7,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"github.com/lib/pq"
 
+	"github.com/Sirupsen/logrus"
 	"github.com/hersshel/hersshel/engine"
 	"github.com/hersshel/hersshel/errors"
 	"github.com/hersshel/hersshel/model"
@@ -109,4 +110,23 @@ func UpdateFeeds(c *gin.Context) {
 	for _, feed := range feeds {
 		ngine.Schedule(c, feed)
 	}
+	c.JSON(http.StatusOK, gin.H{"ok": true})
+}
+
+// DeleteFeed will delete the given feed.
+func DeleteFeed(c *gin.Context) {
+	id, err := strconv.Atoi(c.Param("id"))
+	if err != nil {
+		c.JSON(http.StatusNotFound, errors.Error{
+			Status:  http.StatusNotFound,
+			Code:    "not_found",
+			Message: "feed not found",
+		})
+		return
+	}
+	err = store.DeleteFeed(c, uint(id))
+	if err != nil {
+		logrus.WithError(err).Warn("failed to delete feed")
+	}
+	c.Status(http.StatusNoContent)
 }

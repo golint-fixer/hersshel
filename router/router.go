@@ -32,6 +32,8 @@ func Load(middleware ...gin.HandlerFunc) http.Handler {
 
 		v1.PATCH("/feeds")
 		v1.PATCH("/categories")
+
+		v1.DELETE("/feeds/:id", api.DeleteFeed)
 	}
 	return e
 }

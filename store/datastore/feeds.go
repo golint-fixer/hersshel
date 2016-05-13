@@ -12,3 +12,17 @@ func (ds *datastore) GetAllFeeds() ([]*model.Feed, error) {
 	_, err := ds.Select(&feeds, "SELECT * FROM feed")
 	return feeds, err
 }
+
+// DeleteFeed will delete in the store the given feed.
+func (ds *datastore) DeleteFeed(id uint) error {
+	var feed model.Feed
+	err := ds.SelectOne(&feed, "SELECT * FROM feed WHERE id = $1", id)
+	if err != nil {
+		return err
+	}
+	_, err = ds.Delete(&feed)
+	if err != nil {
+		return err
+	}
+	return nil
+}

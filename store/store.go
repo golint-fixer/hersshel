@@ -13,6 +13,8 @@ type Store interface {
 	GetAllFeeds() ([]*model.Feed, error)
 	// GetFeedItems return a list of model.Item belonging to a given feed.
 	GetFeedItems(id uint) ([]*model.Item, error)
+	// DeleteFeed will delete in the store the given feed.
+	DeleteFeed(id uint) error
 	// GetCategoryItems return a list of model.Item
 	// belonging to a given category.
 	GetCategoryItems(id uint) ([]*model.Item, error)
@@ -37,6 +39,11 @@ func GetAllFeeds(c context.Context) ([]*model.Feed, error) {
 // GetFeedItems return a list of model.Item belonging to a given feed.
 func GetFeedItems(c context.Context, id uint) ([]*model.Item, error) {
 	return FromContext(c).GetFeedItems(id)
+}
+
+// DeleteFeed will delete in the store the given feed.
+func DeleteFeed(c context.Context, id uint) error {
+	return FromContext(c).DeleteFeed(id)
 }
 
 // GetCategoryItems return a list of model.Item belonging to a given feed.
